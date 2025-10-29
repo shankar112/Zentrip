@@ -17,7 +17,9 @@ const mountHeader = () => {
             <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
             <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
             <li class="nav-item"><a class="nav-link" href="checkout.html">Checkout</a></li>
-            <li class="nav-item ms-lg-2"><button id="themeToggle" class="btn btn-sm btn-outline-secondary" type="button">Theme</button></li>
+            <li class="nav-item ms-lg-2">
+              <button id="themeToggle" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center" type="button" aria-label="Toggle theme" title="Toggle theme"></button>
+            </li>
           </ul>
         </div>
       </div>
@@ -27,9 +29,11 @@ const mountHeader = () => {
   initTheme();
   const btn = $('#themeToggle');
   if (btn) {
-    const setLabel = () => btn.textContent = (getTheme() === 'dark') ? 'Light Mode' : 'Dark Mode';
-    setLabel();
-    btn.addEventListener('click', ()=>{ toggleTheme(); setLabel(); });
+    const sun = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4V2m0 20v-2M4.22 4.22L2.81 2.81M21.19 21.19l-1.41-1.41M4 12H2m20 0h-2M4.22 19.78L2.81 21.19M21.19 2.81l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/></svg>';
+    const moon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" fill="none"/></svg>';
+    const setIcon = () => { btn.innerHTML = (getTheme()==='dark') ? sun + '<span class="ms-1">Light</span>' : moon + '<span class="ms-1">Dark</span>'; };
+    setIcon();
+    btn.addEventListener('click', ()=>{ toggleTheme(); setIcon(); });
   }
 };
 
@@ -94,4 +98,3 @@ const observeReveal = (selector = '.reveal') => {
 document.addEventListener('DOMContentLoaded', () => { mountHeader(); mountFooter(); });
 
 export { tripCard, populateGrid, observeReveal };
-
