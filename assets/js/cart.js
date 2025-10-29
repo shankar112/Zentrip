@@ -71,3 +71,5 @@ document.addEventListener('DOMContentLoaded', () => {
   if (location.pathname.endsWith('package.html')) mountPdp();
   if (location.pathname.endsWith('checkout.html')) mountCheckout();
 });
+
+

@@ -4,18 +4,20 @@ import { setStore } from './utils/storage.js';
 import './components.js';
 
 const toMoney = (n) => `$${Number(n).toFixed(0)}`;
-
 const estimate = (base, guests) => base * guests;
 
 const mountTrips = () => {
   const sel = $('#tripSelect');
-  listTrips().forEach(t => sel.append(new Option(`${t.name} — ${t.location}`, t.id)));
+  sel.innerHTML = '';
+  listTrips().forEach(t => sel.append(new Option(`${t.name} - ${t.location}`, t.id)));
 };
 
 const updateQuote = () => {
-  const id = $('#tripSelect').value; const guests = Number($('#bkGuests').value||1);
+  const id = $('#tripSelect').value;
+  const guests = Number($('#bkGuests').value || 1);
   const date = $('#bkDate').value || new Date().toISOString().slice(0,10);
-  const t = getTrip(id); if (!t) return;
+  const t = getTrip(id);
+  if (!t) return;
   const total = estimate(t.price, guests);
   $('#quote').innerHTML = `
     <div class="d-flex align-items-center gap-3">
@@ -31,7 +33,6 @@ const updateQuote = () => {
       <a id="quoteDetails" class="btn btn-outline-secondary btn-sm" href="package.html?id=${t.id}">Details</a>
     </div>`;
 
-  // Wire the checkout button after rendering
   const cta = $('#quoteCheckout');
   if (cta) cta.addEventListener('click', () => {
     setStore('cart', { id: t.id, qty: guests, date });
@@ -50,3 +51,4 @@ document.addEventListener('DOMContentLoaded', () => {
     updateQuote();
   });
 });
+

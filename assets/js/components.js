@@ -1,5 +1,5 @@
 import { $, el } from './utils/dom.js';
-import { listTrips } from './api.js';
+import { initTheme, toggleTheme, getTheme } from './utils/theme.js';
 
 // Header/Footer mount
 const mountHeader = () => {
@@ -13,14 +13,24 @@ const mountHeader = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navMenu" class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
             <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
             <li class="nav-item"><a class="nav-link" href="checkout.html">Checkout</a></li>
+            <li class="nav-item ms-lg-2"><button id="themeToggle" class="btn btn-sm btn-outline-secondary" type="button">Theme</button></li>
           </ul>
         </div>
       </div>
     </nav>`;
+
+  // Theme wiring
+  initTheme();
+  const btn = $('#themeToggle');
+  if (btn) {
+    const setLabel = () => btn.textContent = (getTheme() === 'dark') ? 'Light Mode' : 'Dark Mode';
+    setLabel();
+    btn.addEventListener('click', ()=>{ toggleTheme(); setLabel(); });
+  }
 };
 
 const mountFooter = () => {
@@ -32,8 +42,8 @@ const mountFooter = () => {
       <div class="row g-3 align-items-center">
         <div class="col-md-8">
           <div class="footer-links small">
-            <a href="destinations.html">Destinations</a> ·
-            <a href="booking.html">Booking</a> ·
+            <a href="destinations.html">Destinations</a> &middot;
+            <a href="booking.html">Booking</a> &middot;
             <a href="#">Support</a>
           </div>
         </div>

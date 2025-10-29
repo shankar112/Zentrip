@@ -1,6 +1,10 @@
 /* Header / Navbar */
 .navbar-zen{background:rgba(10,14,24,.7);backdrop-filter:blur(8px);border-bottom:1px solid #1c2743}
+[data-theme="light"] .navbar-zen{background:rgba(255,255,255,.85);border-bottom-color:#e5e7eb}
 .brand{font-weight:700;letter-spacing:.3px}
+/* Light theme navbar text */
+[data-theme="light"] .navbar-zen .navbar-brand,[data-theme="light"] .navbar-zen .nav-link{color:#0f172a!important}
+[data-theme="light"] .navbar-zen .nav-link:hover{color:#111827!important}
 
 /* Sections */
 section{scroll-margin-top:80px}
