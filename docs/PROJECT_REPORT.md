@@ -1,4 +1,4 @@
-**ZenTrip Project Report**
+**ZenTrip Project Report** 
 
 **Overview**
 - Purpose: A modern, multi‑page travel site to discover destinations, view package details, get instant quotes, and complete a mock checkout/payment.
