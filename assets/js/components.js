@@ -1,5 +1,5 @@
 import { $, el } from './utils/dom.js';
-import { listTrips } from './api.js';
+import { initTheme, toggleTheme, getTheme } from './utils/theme.js';
 
 // Header/Footer mount
 const mountHeader = () => {
@@ -13,14 +13,33 @@ const mountHeader = () => {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navMenu" class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
             <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
             <li class="nav-item"><a class="nav-link" href="checkout.html">Checkout</a></li>
+            <li class="nav-item ms-lg-2">
+              <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+                <span class="icon sun" aria-hidden="true"></span>
+                <span class="icon moon" aria-hidden="true"></span>
+                <span class="knob"></span>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
     </nav>`;
+
+  // Theme wiring
+  initTheme();
+  const btn = $('#themeToggle');
+  if (btn) {
+    const setState = () => {
+      const dark = getTheme() === 'dark';
+      btn.classList.toggle('on', dark);
+    };
+    setState();
+    btn.addEventListener('click', ()=>{ toggleTheme(); setState(); });
+  }
 };
 
 const mountFooter = () => {
@@ -32,8 +51,8 @@ const mountFooter = () => {
       <div class="row g-3 align-items-center">
         <div class="col-md-8">
           <div class="footer-links small">
-            <a href="destinations.html">Destinations</a> ·
-            <a href="booking.html">Booking</a> ·
+            <a href="destinations.html">Destinations</a> &middot;
+            <a href="booking.html">Booking</a> &middot;
             <a href="#">Support</a>
           </div>
         </div>
@@ -47,6 +66,7 @@ const tripCard = (t) => {
   const a = el('a', { href: `package.html?id=${t.id}`, class: 'col-12 col-sm-6 col-lg-4 text-reset' });
   const card = el('div', { class: 'card-zen trip-card h-100' });
   const img = el('img', { class: 'trip-thumb', alt: t.name, loading: 'lazy', src: t.hero });
+  img.onerror = () => { img.src = `https://picsum.photos/seed/${t.id}/1200/800`; };
   const body = el('div', { class: 'p-3' });
   body.append(
     el('div', { class: 'd-flex justify-content-between align-items-start mb-1' }, [
@@ -84,4 +104,3 @@ const observeReveal = (selector = '.reveal') => {
 document.addEventListener('DOMContentLoaded', () => { mountHeader(); mountFooter(); });
 
 export { tripCard, populateGrid, observeReveal };
-
