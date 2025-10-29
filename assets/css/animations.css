@@ -1,0 +1,8 @@
+.fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .8s ease forwards}
+.delay-1{animation-delay:.15s}
+.delay-2{animation-delay:.3s}
+.reveal{opacity:0;transform:translateY(8px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
+
+@keyframes fadeUp{to{opacity:1;transform:none}}
+
