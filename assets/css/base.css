@@ -50,7 +50,10 @@ footer{border-top:1px solid #1c2743;background:linear-gradient(180deg,rgba(20,26
 .zen-gradient{background:linear-gradient(120deg,#3447ce,#2cc8b8); color:#fff}
 .float-shape{position:absolute;right:-60px;top:-60px;width:180px;height:180px;background:radial-gradient(circle at 30% 30%,#7dd3fc,transparent 60%);filter:blur(8px);opacity:.5;border-radius:50%}
 /* Light theme promo contrast */
-[data-theme="light"] .zen-gradient{background:linear-gradient(120deg,#e8eefc,#e1fbf7);}
+[data-theme="light"] .zen-gradient{background:
+  linear-gradient(180deg,rgba(2,6,23,.10),rgba(2,6,23,.02)),
+  linear-gradient(120deg,#e8eefc,#e1fbf7);
+}
 [data-theme="light"] .zen-gradient.text-white{color:#0f172a!important}
 [data-theme="light"] .zen-gradient .btn-outline-light{color:#0f172a;border-color:#0f172a}
 [data-theme="light"] .zen-gradient .btn-outline-light:hover{background:#0f172a;color:#fff}
