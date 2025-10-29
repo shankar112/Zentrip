@@ -66,6 +66,7 @@ const tripCard = (t) => {
   const a = el('a', { href: `package.html?id=${t.id}`, class: 'col-12 col-sm-6 col-lg-4 text-reset' });
   const card = el('div', { class: 'card-zen trip-card h-100' });
   const img = el('img', { class: 'trip-thumb', alt: t.name, loading: 'lazy', src: t.hero });
+  img.onerror = () => { img.src = `https://picsum.photos/seed/${t.id}/1200/800`; };
   const body = el('div', { class: 'p-3' });
   body.append(
     el('div', { class: 'd-flex justify-content-between align-items-start mb-1' }, [

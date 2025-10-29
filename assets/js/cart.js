@@ -18,7 +18,9 @@ const mountPdp = () => {
   $('#pdp-meta').textContent = `${trip.location} · ${trip.duration} · ★ ${trip.rating}`;
   $('#pdp-price').textContent = toMoney(trip.price);
   $('#pdp-desc').innerHTML = `<p class="mb-0">${trip.blurb}</p>`;
-  $('#pdp-hero').src = trip.hero;
+  const hero = $('#pdp-hero');
+  hero.src = trip.hero;
+  hero.onerror = () => { hero.src = `https://picsum.photos/seed/${trip.id}/1200/800`; };
   const includes = ['Stays','Breakfast','Airport transfer','Local guide'];
   const ul = $('#pdp-includes');
   ul.innerHTML = includes.map(i=>`<li>${i}</li>`).join('');
